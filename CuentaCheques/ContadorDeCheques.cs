@@ -8,6 +8,17 @@ namespace CuentaCheques
 {
     public class ContadorDeCheques
     {
+
+        public ContadorDeCheques(ConfiguracionCheques config= null)
+        {
+            if (config == null)
+                this.config = new ConfiguracionCheques();
+            else
+                this.config = config;
+
+
+
+        }
         public int Cantidad { get; set; }
 
         public class Item
@@ -110,11 +121,11 @@ namespace CuentaCheques
 
         public void Cuenta()
         {
-            ConfiguracionCheques config = new ConfiguracionCheques();
+            
             Item[] items = new Item[]{
-                new Item {Value = config.Cheque1Peso, Weight = config.Cheque1Valor},
-                new Item {Value = config.Cheque2Peso, Weight = config.Cheque2Valor},
-                new Item {Value = config.Cheque3Peso, Weight = config.Cheque3Valor},
+                new Item {Value = config.Cheque1Valor, Weight = config.Cheque1Peso},
+                new Item {Value = config.Cheque2Valor, Weight = config.Cheque2Peso},
+                new Item {Value = config.Cheque3Valor, Weight = config.Cheque3Peso},
 
             };
             
@@ -130,7 +141,7 @@ namespace CuentaCheques
         }
 
         public Dictionary<int, int> Resultado { get; set; }
-
+        private ConfiguracionCheques config;
 
     }
 }

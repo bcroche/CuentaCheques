@@ -1,9 +1,7 @@
 ﻿@page
-@model IndexModel
+@model CuentaCheques.Pages.CuentaModel
 @{
-    ViewData["Title"] = "Home page";
 }
-
 <div class="text-center">
     <h1 class="text-info">Cuenta Cheques</h1>
     <form method="get">
@@ -26,26 +24,26 @@
 
         @if (Model.Cheques.Count > 0)
         {
-        <div id="resultadodiv" class="border container" style="padding:30px;">
-            <table class="table-bordered" cellspacing="20">
-                <thead>
-                    <tr>
-                        <th>Cheque</th>
-                        <th>Número</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model.Cheques)
+            <div id="resultadodiv" class="border container" style="padding:30px;">
+                <table class="table-bordered" cellspacing="20">
+                    <thead>
+                        <tr>
+                            <th>Cheque</th>
+                            <th>Número</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Cheques)
                         {
-                    <tr>
-                        <td>@item.ValorCheque </td>
-                        <td>@item.CantidadCheque </td>
-                    </tr>
+                            <tr>
+                                <td>@item.ValorCheque </td>
+                                <td>@item.CantidadCheque </td>
+                            </tr>
                         }
-                </tbody>
+                    </tbody>
 
-            </table>
-        </div>
+                </table>
+            </div>
         }
 
         <div id="pesosdiv" class="border container" style="padding:30px;">

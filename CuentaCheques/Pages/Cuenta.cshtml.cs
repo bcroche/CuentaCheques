@@ -1,26 +1,26 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Logging;
 
 namespace CuentaCheques.Pages
 {
-    public class IndexModel : PageModel
+    public class CuentaModel : PageModel
     {
-
         public class CantidadCheques
         {
             public int ValorCheque { get; set; }
             public int CantidadCheque { get; set; }
         }
 
-        private ConfiguracionCheques _configuracion = new ConfiguracionCheques();
-        private readonly ILogger<IndexModel> _logger;
 
-        public IndexModel(ILogger<IndexModel> logger)
+        private ConfiguracionCheques _configuracion = new ConfiguracionCheques();
+        private readonly ILogger<CuentaModel> _logger;
+
+        public CuentaModel(ILogger<CuentaModel> logger)
         {
             _logger = logger;
         }
