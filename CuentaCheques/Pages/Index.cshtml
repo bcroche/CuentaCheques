@@ -1,0 +1,48 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="text-info">Cuenta Cheques</h1>
+    <div class="border container" style="padding:30px;">
+        <form method="get">
+            <div class="form-group row">
+                <div class="col-3">
+                    <label asp-for="Cantidad"></label>
+                </div>
+                <div class="col-3">
+                    <input asp-for="Cantidad" class="form-control" />
+                </div>
+                <div class="col-6 ">
+                    <input type="submit" value="Calcula" class="btn btn-primary form-control" />
+                </div>
+            </div>
+        </form>
+    </div>
+    <br />
+
+    <div class="border container" style="padding:30px;">
+        <table class="table-bordered" cellspacing="20" >
+            <thead>
+                <tr>
+                    <th>Cheque</th>
+                    <th>Número</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Cheques)
+                {
+                <tr>
+                    <td>@item.ValorCheque </td>
+                    <td>@item.CantidadCheque </td>
+                </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+
+
+</div>
