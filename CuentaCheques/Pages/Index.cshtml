@@ -1,12 +1,30 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+  //  ViewData["Title"] = "Cuenta Cheques";
 }
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+
+    $(document).ready(function () {
+        $("#toggle").click(function () {
+            $("#pesosdiv").toggle();
+        });
+    });
+
+
+</script>
+<style>
+    th, td {
+        padding: 10px;
+    }
+</style>
 
 <div class="text-center">
     <h1 class="text-info">Cuenta Cheques</h1>
     <form method="get">
+
         <div class="border container" style="padding:30px;">
 
             <div class="form-group row">
@@ -17,7 +35,7 @@
                     <input asp-for="Cantidad" class="form-control" />
                 </div>
                 <div class="col-6 ">
-                    <input type="submit" value="Calcula" class="btn btn-primary form-control" />
+                    <input id="cantidad" type="submit" value="Calcula" class="btn btn-primary form-control" />
                 </div>
             </div>
 
@@ -26,46 +44,48 @@
 
         @if (Model.Cheques.Count > 0)
         {
-        <div id="resultadodiv" class="border container" style="padding:30px;">
-            <table class="table-bordered" cellspacing="20">
-                <thead>
-                    <tr>
-                        <th>Cheque</th>
-                        <th>Número</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model.Cheques)
-                        {
+    <div id="resultadodiv" class="border container" style="padding:30px;">
+        <h3 class="text-info">Combinación óptima</h3>
+        <table class="table-bordered" cellspacing="20" style="margin-left: auto; margin-right: auto; ">
+            <thead>
+                <tr>
+                    <th>Cheque</th>
+                    <th>Número</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Cheques)
+                {
                     <tr>
                         <td>@item.ValorCheque </td>
                         <td>@item.CantidadCheque </td>
                     </tr>
-                        }
-                </tbody>
+                }
+            </tbody>
 
-            </table>
-        </div>
+        </table>
+    </div>
         }
 
-        <div id="pesosdiv" class="border container" style="padding:30px;">
+        <button id="toggle" form="" class="btn btn-secondary" >Configurar Pesos</button>
+        <div id="pesosdiv" class="border container" style="padding:30px;display:none">
             <h3 class="text-info">Cheques preferentes</h3>
-            <table class="table-bordered" cellspacing="20">
+            <table class="table-bordered" cellspacing="20"  style="margin-left: auto; margin-right: auto;">
                 <tr>
                     <th>Cheque</th>
                     <th>Prioridad</th>
                 </tr>
                 <tr>
-                    <td>@Model.Configuracion.Cheque1Peso </td>
+                    <td>@Model.Configuracion.Cheque1Peso € </td>
                     <td> <input type="checkbox" name="prioriza1" checked="@(@Model.Configuracion.Cheque1Valor > 4)"> </td>
 
                 </tr>
                 <tr>
-                    <td>@Model.Configuracion.Cheque2Peso </td>
+                    <td>@Model.Configuracion.Cheque2Peso €</td>
                     <td> <input type="checkbox" name="prioriza2" checked="@(@Model.Configuracion.Cheque2Valor > 4)"> </td>
                 </tr>
                 <tr>
-                    <td>@Model.Configuracion.Cheque3Peso </td>
+                    <td>@Model.Configuracion.Cheque3Peso €</td>
                     <td> <input type="checkbox" name="prioriza3" checked="@(@Model.Configuracion.Cheque3Valor > 4)"> </td>
                 </tr>
 

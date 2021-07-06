@@ -13,7 +13,7 @@ namespace CuentaCheques.Pages
 
         public class CantidadCheques
         {
-            public int ValorCheque { get; set; }
+            public string ValorCheque { get; set; }
             public int CantidadCheque { get; set; }
         }
 
@@ -40,7 +40,7 @@ namespace CuentaCheques.Pages
                 foreach (var item in resultado)
                 {
                     CantidadCheques cc = new CantidadCheques();
-                    cc.ValorCheque = item.Key;
+                    cc.ValorCheque = item.Key.ToString() + "€";
                     cc.CantidadCheque = item.Value;
                     Cheques.Add(cc);
                 }
