@@ -9,10 +9,10 @@ namespace CuentaCheques
     public class ContadorDeCheques
     {
 
-        public ContadorDeCheques(ConfiguracionCheques config= null)
+        public ContadorDeCheques(ConfiguracionCheques_V2 config= null)
         {
             if (config == null)
-                this.config = new ConfiguracionCheques();
+                this.config = new ConfiguracionCheques_V2();
             else
                 this.config = config;
 
@@ -49,7 +49,7 @@ namespace CuentaCheques
                 }
                 else if (pesoMCand == pesoM)
                 {
-                    if (ValorMochila(mochilaCandidata, items) > ValorMochila(mochila, items))
+                    if (ChequesMochila(mochilaCandidata, items) < ChequesMochila(mochila, items))
                     {
                         Array.Copy(mochilaCandidata, mochila, mochilaCandidata.Length);
                     }
@@ -89,12 +89,25 @@ namespace CuentaCheques
 
         private int ValorMochila(int[] mochila, Item[] items)
         {
-            int valor = 0;
+            int valor = 0;            
             for (int i = 0; i < mochila.Length; i++)
             {
-                valor += mochila[i] * items[i].Value;
+                valor += mochila[i] * items[i].Value;            
             }
             return valor;
+            
+        }
+
+        private int ChequesMochila(int[] mochila, Item[] items)
+        {
+            
+            int numCheques = 0;
+            for (int i = 0; i < mochila.Length; i++)
+            {
+            
+                numCheques += mochila[i];
+            }            
+            return numCheques;
         }
 
         private int PesoMochila(int[] mochila, Item[] items)
@@ -123,9 +136,9 @@ namespace CuentaCheques
         {
             
             Item[] items = new Item[]{
-                new Item {Value = config.Cheque1Valor, Weight = config.Cheque1Peso},
-                new Item {Value = config.Cheque2Valor, Weight = config.Cheque2Peso},
-                new Item {Value = config.Cheque3Valor, Weight = config.Cheque3Peso},
+                new Item {Value = config.Cheque1Peso, Weight = config.Cheque1Peso},
+                new Item {Value = config.Cheque2Peso, Weight = config.Cheque2Peso},
+                new Item {Value = config.Cheque3Peso, Weight = config.Cheque3Peso},
 
             };
             
@@ -141,7 +154,7 @@ namespace CuentaCheques
         }
 
         public Dictionary<int, int> Resultado { get; set; }
-        private ConfiguracionCheques config;
+        private ConfiguracionCheques_V2 config;
 
     }
 }

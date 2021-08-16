@@ -17,7 +17,7 @@ namespace CuentaCheques.Pages
         }
 
 
-        private ConfiguracionCheques _configuracion = new ConfiguracionCheques();
+        private ConfiguracionCheques_V2 _configuracion = new ConfiguracionCheques_V2();
         private readonly ILogger<CuentaModel> _logger;
 
         public CuentaModel(ILogger<CuentaModel> logger)
@@ -84,7 +84,7 @@ namespace CuentaCheques.Pages
         [BindProperty]
         public List<CantidadCheques> Cheques { get; set; }
         [BindProperty]
-        public ConfiguracionCheques Configuracion
+        public ConfiguracionCheques_V2 Configuracion
         {
             get { return _configuracion; }
         }
