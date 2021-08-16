@@ -13,7 +13,8 @@ namespace CuentaCheques.Pages
 
         public class CantidadCheques
         {
-            public string ValorCheque { get; set; }
+            public string EtiquetaCheque { get; set; }
+            public int ValorCheque { get; set; }
             public int CantidadCheque { get; set; }
         }
 
@@ -35,12 +36,13 @@ namespace CuentaCheques.Pages
 
                 CheckCounter = new ContadorDeCheques(Configuracion);
                 CheckCounter.Cantidad = cantidad.Value;
-                CheckCounter.Cuenta();
+                CheckCounter.Cuenta_V2();
                 Dictionary<int, int> resultado = CheckCounter.Resultado;
                 foreach (var item in resultado)
                 {
                     CantidadCheques cc = new CantidadCheques();
-                    cc.ValorCheque = item.Key.ToString() + "€";
+                    cc.EtiquetaCheque = item.Key.ToString() + "€";
+                    cc.ValorCheque = item.Key;
                     cc.CantidadCheque = item.Value;
                     Cheques.Add(cc);
                 }
@@ -87,6 +89,22 @@ namespace CuentaCheques.Pages
         public ConfiguracionCheques_V2 Configuracion
         {
             get { return _configuracion; }
+        }
+
+
+        [BindProperty]
+        public int ValorMochila 
+        {
+            get
+            {
+                int valor = 0;
+                foreach (CantidadCheques cheques in Cheques)
+                {
+                    valor += cheques.ValorCheque * cheques.CantidadCheque;
+
+                }
+                return valor;
+            }
         }
     }
 }

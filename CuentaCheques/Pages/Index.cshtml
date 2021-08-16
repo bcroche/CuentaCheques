@@ -45,7 +45,7 @@
         @if (Model.Cheques.Count > 0)
         {
     <div id="resultadodiv" class="border container" style="padding:30px;">
-        <h3 class="text-info">Combinación óptima</h3>
+        <h3 class="text-info">Combinación óptima: @Model.ValorMochila</h3>
         <table class="table-bordered" cellspacing="20" style="margin-left: auto; margin-right: auto; ">
             <thead>
                 <tr>
@@ -57,7 +57,7 @@
                 @foreach (var item in Model.Cheques)
                 {
                     <tr>
-                        <td>@item.ValorCheque </td>
+                        <td>@item.EtiquetaCheque</td>
                         <td>@item.CantidadCheque </td>
                     </tr>
                 }
@@ -67,9 +67,9 @@
     </div>
         }
 
-        <button id="toggle" form="" class="btn btn-secondary" >Configurar Pesos</button>
+        <button id="toggle" form="" class="btn btn-secondary" >Configurar Cheques Disponibles</button>
         <div id="pesosdiv" class="border container" style="padding:30px;display:none">
-            <h3 class="text-info">Cheques preferentes</h3>
+            <h3 class="text-info">Cheques disponibles</h3>
             <table class="table-bordered" cellspacing="20"  style="margin-left: auto; margin-right: auto;">
                 <tr>
                     <th>Cheque</th>

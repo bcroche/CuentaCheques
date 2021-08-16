@@ -141,12 +141,40 @@ namespace CuentaCheques
                 new Item {Value = config.Cheque3Peso, Weight = config.Cheque3Peso},
 
             };
-            
-            
+
             int[] mochila = Mochila(Cantidad, items);
             //PrintMochila(mochila, items);
             Resultado = new Dictionary<int, int>();
             for (int i=0; i< mochila.Length; i++)
+            {
+                Resultado[items[i].Weight] = mochila[i];
+            }
+
+        }
+
+        public void Cuenta_V2()
+        {
+
+            int pos = 0;
+            int N= config.ChequesDistintos();
+            Item[] items = new Item[N];
+            if (config.Cheque1Valor)
+            {
+                items[pos++] = new Item { Value = config.Cheque1Peso, Weight = config.Cheque1Peso };
+            }
+            if (config.Cheque2Valor)
+            {
+                items[pos++] = new Item { Value = config.Cheque2Peso, Weight = config.Cheque2Peso };
+            }
+            if (config.Cheque3Valor)
+            {
+                items[pos++] = new Item { Value = config.Cheque3Peso, Weight = config.Cheque3Peso };
+            }
+
+            int[] mochila = Mochila(Cantidad, items);
+            //PrintMochila(mochila, items);
+            Resultado = new Dictionary<int, int>();
+            for (int i = 0; i < mochila.Length; i++)
             {
                 Resultado[items[i].Weight] = mochila[i];
             }
