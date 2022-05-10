@@ -28,10 +28,26 @@ namespace CuentaCheques.Pages
 
         public void OnGet(int? cantidad, string? prioriza1, string? prioriza2, string? prioriza3)
         {
+            for(int i=0; i<Configuracion.TiposDeCheque.Length; i++)
+            {
+                Configuracion.TiposDeCheque[i].Active = false;
+                if (Request.Query.ContainsKey(i.ToString()))
+                {
+                    if (Request.Query[i.ToString()] == "on")
+                    {
+                        Configuracion.TiposDeCheque[i].Active = true;
+                    }
+                    else
+                    {
+                     //   Configuracion.TiposDeCheque[i].Active = false;
+                    }
+                }
+            }
+            
             Cheques = new List<CantidadCheques>();
             if (cantidad.HasValue)
             {
-                Configuracion.Reprioriza(prioriza1, prioriza2, prioriza3);
+                //Configuracion.Reprioriza(prioriza1, prioriza2, prioriza3);
 
 
                 CheckCounter = new ContadorDeCheques(Configuracion);
@@ -89,6 +105,12 @@ namespace CuentaCheques.Pages
         public ConfiguracionCheques_V2 Configuracion
         {
             get { return _configuracion; }
+        }
+
+        [BindProperty]
+        public ConfiguracionCheques_V2.TipoCheque[] TiposdeCheque
+        {
+            get { return _configuracion.TiposDeCheque; }
         }
 
 

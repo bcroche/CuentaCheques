@@ -70,11 +70,22 @@
         <button id="toggle" form="" class="btn btn-secondary" >Configurar Cheques Disponibles</button>
         <div id="pesosdiv" class="border container" style="padding:30px;display:none">
             <h3 class="text-info">Cheques disponibles</h3>
-            <table class="table-bordered" cellspacing="20"  style="margin-left: auto; margin-right: auto;">
+            <table class="table-bordered" cellspacing="20" style="margin-left: auto; margin-right: auto;">
                 <tr>
                     <th>Cheque</th>
                     <th>Prioridad</th>
                 </tr>
+                @for (int i= 0; i<Model.TiposdeCheque.Length; i++)
+                {
+                    <tr>
+                        <td>@Model.TiposdeCheque[i].Weight € </td>
+                        <td> <input type="checkbox" name="@i" checked="@Model.TiposdeCheque[i].Active"> </td>
+
+                    </tr>
+                }
+                <!--
+                    
+                
                 <tr>
                     <td>@Model.Configuracion.Cheque1Peso € </td>
                     <td> <input type="checkbox" name="prioriza1" checked="@(@Model.Configuracion.Cheque1Valor )"> </td>
@@ -88,7 +99,7 @@
                     <td>@Model.Configuracion.Cheque3Peso €</td>
                     <td> <input type="checkbox" name="prioriza3" checked="@(@Model.Configuracion.Cheque3Valor )"> </td>
                 </tr>
-
+                    -->
             </table>
 
     </form>

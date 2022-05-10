@@ -158,6 +158,14 @@ namespace CuentaCheques
             int pos = 0;
             int N= config.ChequesDistintos();
             Item[] items = new Item[N];
+            foreach (ConfiguracionCheques_V2.TipoCheque tipoCheque in config.TiposDeCheque)
+            {
+                if (tipoCheque.Active)
+                {
+                    items[pos++] = new Item { Value = tipoCheque.Weight, Weight = tipoCheque.Weight};
+                }
+            }
+            /*
             if (config.Cheque1Valor)
             {
                 items[pos++] = new Item { Value = config.Cheque1Peso, Weight = config.Cheque1Peso };
@@ -170,7 +178,7 @@ namespace CuentaCheques
             {
                 items[pos++] = new Item { Value = config.Cheque3Peso, Weight = config.Cheque3Peso };
             }
-
+            */
             int[] mochila = Mochila(Cantidad, items);
             //PrintMochila(mochila, items);
             Resultado = new Dictionary<int, int>();
